@@ -1,0 +1,648 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Überfällige Aufgaben */
+.deadline-overdue {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* Heute fällige Aufgaben */
+.deadline-today {
+    color: #ea580c;
+    font-weight: bold;
+}
+
+/* Aufgaben, die bald fällig sind */
+.deadline-soon {
+    color: #ca8a04;
+    font-weight: bold;
+}
+
+/* Aufgaben mit späterer Deadline */
+.deadline-later {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* Erledigte Aufgaben */
+.deadline-completed {
+    color: #6b7280;
+    font-weight: bold;
+}
+
+
+/* Allgemeine Einstellungen */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    display: block;
+    background-color: #f1f5f9;
+    font-family: Arial, sans-serif;
+    color: #1e293b;
+}
+
+#root {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* Hauptcontainer */
+
+.app-container {
+    width: min(100% - 32px, 1100px);
+    margin: 0 auto;
+    padding: 32px 0;
+}
+
+/* Header */
+
+header {
+    background-color: #2563eb;
+    color: white;
+    padding: 28px 32px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header p {
+    color: #dbeafe;
+    margin-bottom: 0;
+}
+
+/* Dashboard */
+
+main {
+    margin-bottom: 24px;
+}
+
+/* Bereiche als weiße Karten */
+
+section {
+    background-color: white;
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+    margin-top: 0;
+    color: #1e293b;
+}
+
+/* Eingabefelder */
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-top: 6px;
+    margin-bottom: 14px;
+}
+
+input:not([type="checkbox"]),
+textarea,
+select {
+    width: 100%;
+    max-width: 500px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #93c5fd;
+    border-color: #2563eb;
+}
+
+/* Checkbox */
+
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Buttons */
+
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 6px 8px 6px 0;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Einzelne Aufgaben-Karten */
+
+.task-card {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.task-card h3 {
+    margin-top: 0;
+    color: #1e293b;
+}
+
+.task-card p {
+    color: #475569;
+}
+
+/* Farben für die Dringlichkeit innerhalb der Karten */
+
+.task-card p.deadline-overdue {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.task-card p.deadline-today {
+    color: #ea580c;
+    font-weight: bold;
+}
+
+.task-card p.deadline-soon {
+    color: #ca8a04;
+    font-weight: bold;
+}
+
+.task-card p.deadline-later {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.task-card p.deadline-completed {
+    color: #6b7280;
+    font-weight: bold;
+}
+
+/* Erledigte Aufgabentitel */
+
+.task-card h3.completed {
+    color: #6b7280;
+    text-decoration: line-through;
+}
+
+/* Statistik-Bereich */
+
+.statistics-section {
+    margin-bottom: 24px;
+}
+
+/* Drei Karten nebeneinander */
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Gemeinsames Design */
+
+.stat-card {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h3 {
+    font-size: 15px;
+    color: #64748b;
+    margin-top: 0;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+/* Individuelle Farben */
+
+.stat-total {
+    border-left: 5px solid #2563eb;
+}
+
+.stat-open {
+    border-left: 5px solid #f59e0b;
+}
+
+.stat-completed {
+    border-left: 5px solid #16a34a;
+}
+
+/* Anpassung für kleinere Bildschirme */
+
+@media (max-width: 650px) {
+    .statistics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Formular-Layout */
+
+.task-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Einzelne Eingabebereiche */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Beschreibung über die gesamte Breite */
+
+.form-group:nth-child(2) {
+    grid-column: 1 / -1;
+}
+
+/* Beschriftungen */
+
+.form-group label {
+    font-weight: 600;
+    color: #334155;
+}
+
+/* Textarea */
+
+.task-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Hinzufügen-Button */
+
+.task-form button {
+    justify-self: start;
+    align-self: end;
+    padding: 12px 22px;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+
+@media (max-width: 650px) {
+    .task-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group:nth-child(2) {
+        grid-column: auto;
+    }
+}
+
+/* Formular und Aufgaben nebeneinander */
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.4fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* Formular kompakter gestalten */
+
+.dashboard-content .task-form {
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.dashboard-content .form-group:nth-child(2) {
+    grid-column: auto;
+}
+
+.dashboard-content .task-form input,
+.dashboard-content .task-form textarea,
+.dashboard-content .task-form select {
+    margin-bottom: 0;
+}
+
+.dashboard-content .task-form textarea {
+    min-height: 75px;
+}
+
+/* Kleine Bildschirme */
+
+@media (max-width: 850px) {
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Suchfeld */
+
+.task-search {
+    display: block;
+    width: 100%;
+    max-width: 100% !important;
+    padding: 12px 16px;
+    margin: 15px 0 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* Suchfeld und Kategorie-Filter */
+
+.task-filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 15px 0 20px;
+}
+
+.task-filters .task-search {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+}
+
+.task-filters .category-filter {
+    width: auto;
+    min-width: 160px;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .task-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-filters .category-filter {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Checkbox rechts ausrichten */
+.task-card label {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+/* Checkbox-Abstand korrigieren */
+.task-card label input[type="checkbox"] {
+    margin: 0;
+}
+
+/* Löschen-Button */
+
+.task-card button.delete-button {
+    background-color: #dc2626;
+    color: white;
+}
+
+.task-card button.delete-button:hover {
+    background-color: #b91c1c;
+}
+
+/* Fokus-Button */
+
+.task-card button.focus-button {
+    background-color: #7c3aed;
+}
+
+.task-card button.focus-button:hover {
+    background-color: #6d28d9;
+}
+
+/* Aus Fokusliste entfernen */
+
+.task-card button.focus-remove-button {
+    background-color: #64748b;
+}
+
+.task-card button.focus-remove-button:hover {
+    background-color: #475569;
+}
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+@media (max-width: 1000px) {
+    .dashboard-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dashboard kompakter gestalten */
+
+.dashboard-content {
+    gap: 12px;
+}
+
+/* Die drei Hauptbereiche */
+
+.dashboard-content > section {
+    padding: 16px;
+}
+
+/* Überschriften kleiner machen */
+
+.dashboard-content > section > h2 {
+    font-size: 19px;
+    margin-bottom: 14px;
+}
+
+/* Aufgabenkarten verkleinern */
+
+.task-card {
+    padding: 14px;
+    margin-bottom: 12px;
+}
+
+.task-card h3 {
+    font-size: 16px;
+}
+
+.task-card p {
+    font-size: 13px;
+}
+
+/* Fokus-Karten kompakter */
+
+.focus-task-card {
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.focus-task-card h3 {
+    font-size: 15px;
+}
+
+/* Eingabefelder etwas kleiner */
+
+.dashboard-content input:not([type="checkbox"]),
+.dashboard-content textarea,
+.dashboard-content select {
+    padding: 8px 10px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+/* Buttons kompakter */
+
+.dashboard-content button {
+    padding: 8px 12px;
+    font-size: 12px;
+}
