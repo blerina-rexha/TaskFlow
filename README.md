@@ -47,7 +47,7 @@ Die Anwendung wurde mit React und JavaScript entwickelt. Das Design wurde mit CS
 Das GitHub-Repository herunterladen oder klonen.
 
 ```bash
-git clone https://github.com/DEIN-GITHUB-NAME/TaskFlow.git
+git clone https://github.com/blerina-rexha/TaskFlow.git
 ```
 
 ### 2. Projektordner öffnen
